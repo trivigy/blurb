@@ -11,6 +11,11 @@ __author__ = 'Konstantin Itskov <konstantin.itskov@kovits.com>'
 import subprocess
 import re
 
+rate = 1.1
+x_weak = r'[,]'
+weak = r'[.:;!•—]'
+skip = r'[_-]'
+
 
 def main():
     """Parse the string recorded in xsel and text to speech it through swift."""
@@ -25,13 +30,15 @@ def main():
     else:
         text = subprocess.check_output(["xsel"])
         text = text.decode('utf-8')
-        ptn = re.compile(r'[.:;!•]')
-        text = re.sub(ptn, '<break strength="weak"/>', text)
-        ptn = re.compile(r'[,]')
+        ptn = re.compile(x_weak)
         text = re.sub(ptn, '<break strength="x-weak"/>', text)
-        ptn = re.compile(r'[-]')
+        ptn = re.compile(weak)
+        text = re.sub(ptn, '<break strength="weak"/>', text)
+        ptn = re.compile(skip)
         text = re.sub(ptn, ' ', text)
-        cmd = "padsp swift -e \"utf-8\" <prosody rate='1.1'>" + text + "</prosody>"
+        text = '<prosody rate="' + str(rate) + '">' + text + '</prosody>'
+        print(text)
+        cmd = "padsp swift -e \"utf-8\" " + text
         subprocess.Popen(cmd.split())
 
 if __name__ == '__main__':
