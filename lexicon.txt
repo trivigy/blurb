@@ -1,0 +1,20 @@
+#
+# User lexicon entries go here, one per line, in the format
+#
+#  WORD 0 PHONELIST
+#
+# with any amount of white space allowed.
+#
+#
+# For example:
+#
+# cepstral  0  k eh1 p s t r ah0 l
+#
+
+millisecond 0 m ih1 l ih s eh0 k ah n d
+milliseconds 0 m ih1 l ih s eh0 k ah n d z
+i/o 0 ih1 n p uh t aw1 t p uh t
+microsecond 0 m ay1 k r ow s eh0 k ah n d
+microseconds 0 m ay1 k r ow s eh0 k ah n d z
+multilevel 0 m ah0 l t i l eh1 v ah l
+isn't 0 ih1 z n ah1 t
