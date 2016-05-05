@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
+# coding=utf-8
 """Text to speech clip board player based on cepstral swift application.
 
 Dependencies: padsp, swift, xsel
@@ -12,7 +13,7 @@ __version__ = 1.0
 __date__ = '2014-10-26'
 __author__ = 'Konstantin Itskov <konstantin.itskov@kovits.com>'
 
-rate = 1.1
+rate = 1.3
 x_weak = r'[,"]'
 weak = r'[.:;!•—]'
 skip = r'[_-]'
@@ -22,14 +23,14 @@ def main():
     """Parse the string recorded in xsel and text to speech it through swift."""
     try:
         pid = subprocess.check_output(["pgrep", "swift"])
-    except Exception:
+    except:
         pid = None
 
     if pid:
         pid = int(pid)
         subprocess.check_call(["kill", str(pid)])
     else:
-        text = subprocess.check_output(["xsel"])
+        text = subprocess.check_output(["xsel", "--clipboard"])
         text = text.decode('utf-8')
 
         # Special Cases
