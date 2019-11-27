@@ -30,7 +30,7 @@ def main():
         pid = int(pid)
         subprocess.check_call(["kill", str(pid)])
     else:
-        text = subprocess.check_output(["xsel", "--clipboard"])
+        text = subprocess.check_output('xsel', shell=True)
         text = text.decode('utf-8')
 
         # Special Cases
